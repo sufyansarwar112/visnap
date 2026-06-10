@@ -907,9 +907,20 @@
       // Streaming
       const streamEl = document.getElementById('streamingRow');
       streamEl.innerHTML = '';
+      const affiliateLinks = {
+        'Prime Video': `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`,
+        'Amazon': `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`,
+        'Amazon Prime': `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`,
+        'Amazon Prime Video': `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`,
+      };
       if (data.streaming && data.streaming.length > 0) {
         data.streaming.forEach(s => {
-          streamEl.innerHTML += `<span class="stream-btn">${s}</span>`;
+          const url = affiliateLinks[s];
+          if (url) {
+            streamEl.innerHTML += `<a href="${url}" target="_blank" rel="noopener" class="stream-btn">${s}</a>`;
+          } else {
+            streamEl.innerHTML += `<span class="stream-btn">${s}</span>`;
+          }
         });
       } else {
         streamEl.innerHTML = `<span style="color:var(--muted);font-size:14px;">No streaming info available</span>`;
