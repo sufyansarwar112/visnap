@@ -907,17 +907,28 @@
       // Streaming
       const streamEl = document.getElementById('streamingRow');
       streamEl.innerHTML = '';
-      const affiliateLinks = {
-        'Prime Video': `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`,
-        'Amazon': `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`,
-        'Amazon Prime': `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`,
-        'Amazon Prime Video': `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`,
+      const streamingData = {
+        'Prime Video':        { url: `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/120px-Amazon_Prime_Video_logo.svg.png' },
+        'Amazon':             { url: `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/120px-Amazon_Prime_Video_logo.svg.png' },
+        'Amazon Prime Video': { url: `https://www.amazon.com/gp/video/storefront?tag=sufyansarwar1-20`, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/120px-Amazon_Prime_Video_logo.svg.png' },
+        'Netflix':            { url: 'https://www.netflix.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/120px-Netflix_2015_logo.svg.png' },
+        'Disney+':            { url: 'https://www.disneyplus.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/120px-Disney%2B_logo.svg.png' },
+        'HBO Max':            { url: 'https://www.max.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/HBO_Max_Logo.svg/120px-HBO_Max_Logo.svg.png' },
+        'Max':                { url: 'https://www.max.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Max_logo.svg/120px-Max_logo.svg.png' },
+        'Hulu':               { url: 'https://www.hulu.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Hulu_Logo.svg/120px-Hulu_Logo.svg.png' },
+        'Apple TV+':          { url: 'https://www.apple.com/apple-tv-plus/', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Apple_TV_Plus_Logo.svg/120px-Apple_TV_Plus_Logo.svg.png' },
+        'Paramount+':         { url: 'https://www.paramountplus.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Paramount_Plus_logo.svg/120px-Paramount_Plus_logo.svg.png' },
+        'Peacock':            { url: 'https://www.peacocktv.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/NBCUniversal_Peacock_Logo.svg/120px-NBCUniversal_Peacock_Logo.svg.png' },
+        'MUBI':               { url: 'https://mubi.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/MUBI_logo.svg/120px-MUBI_logo.svg.png' },
       };
       if (data.streaming && data.streaming.length > 0) {
         data.streaming.forEach(s => {
-          const url = affiliateLinks[s];
-          if (url) {
-            streamEl.innerHTML += `<a href="${url}" target="_blank" rel="noopener" class="stream-btn">${s}</a>`;
+          const d = streamingData[s];
+          if (d && d.logo) {
+            streamEl.innerHTML += `<a href="${d.url}" target="_blank" rel="noopener" class="stream-btn" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;">
+              <img src="${d.logo}" alt="${s}" style="height:20px;width:auto;object-fit:contain;filter:brightness(0) invert(1);" onerror="this.style.display='none'">
+              <span>${s}</span>
+            </a>`;
           } else {
             streamEl.innerHTML += `<span class="stream-btn">${s}</span>`;
           }
