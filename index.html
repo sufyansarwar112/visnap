@@ -624,6 +624,19 @@
         <p>PNG, JPG, WEBP · or paste from clipboard (⌘V)</p>
       </div>
 
+      <!-- Camera button (mobile only) -->
+      <div id="cameraBtn" style="display:none; margin-top:12px;">
+        <label style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:12px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;font-size:15px;font-weight:600;color:var(--text);transition:all 0.2s;">
+          <input type="file" accept="image/*" capture="environment" onchange="handleFile(event)" style="display:none;" />
+          📷 Take a Photo
+        </label>
+      </div>
+      <script>
+        if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+          document.getElementById('cameraBtn').style.display = 'block';
+        }
+      </script>
+
       <!-- Preview -->
       <div class="preview-wrap" id="previewWrap">
         <img id="previewImg" src="" alt="Preview" />
